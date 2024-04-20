@@ -26,10 +26,10 @@ userRouter.post("/signup", async (c) => {
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
 
-
   try {
     const user = await prisma.user.create({
       data: {
+        name: body.name,
         email: body.username,
         password: body.password,
       },
@@ -54,7 +54,7 @@ userRouter.post("/signin", async (c) => {
       error: "Input Validation Failed",
     });
   }
-  
+
   const prisma = new PrismaClient({
     datasourceUrl: c.env?.DATABASE_URL,
   }).$extends(withAccelerate());
