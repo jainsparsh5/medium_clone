@@ -28,7 +28,7 @@ export const BlogCard = ({
         </div>
         <div className="text-xl font-bold pt-2">{title}</div>
         <div className="font-light text-md">
-          {content.slice(0, 100)} + {"..."}
+          {content.slice(0, 250)}{content.length>250?"...":""}
         </div>
         <div className="text-slate-500 text-xs font-thin pt-2">{`${Math.ceil(
           content.length / 100

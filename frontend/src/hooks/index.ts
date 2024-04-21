@@ -48,6 +48,9 @@ export const useBlogs = () => {
       .then((res) => {
         setBlogs(res.data.blogs);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 

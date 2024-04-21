@@ -37,7 +37,6 @@ blogRouter.use("/*", async (c, next) => {
   }
 });
 
-//add pagination
 
 blogRouter.post("/", async (c) => {
   const body = await c.req.json();

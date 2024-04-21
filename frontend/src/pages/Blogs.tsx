@@ -1,12 +1,35 @@
+import { useNavigate } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
+import { useEffect } from "react";
+import { BlogSkeleton } from "../components/BlogSkeleton";
 
 export const Blogs = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signin");
+    }
+  }, []);
+
   const { loading, blogs } = useBlogs();
 
-  if (loading) {
-    return <div>loading...</div>;
+  if(loading){
+    return (
+      <div>
+        <Appbar />
+        <div className="mt-20 flex justify-center">
+          <div className="max-w-2xl w-full">
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+            <BlogSkeleton />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
